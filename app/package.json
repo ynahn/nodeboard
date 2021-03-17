@@ -73,7 +73,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./bin/www.js"
+    "start": "nodemon ./bin/www.js -e js,ejs,mjs,json"
   },
   "keywords": [],
   "author": "ynahn",
