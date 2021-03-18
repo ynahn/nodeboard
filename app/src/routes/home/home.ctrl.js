@@ -1,5 +1,7 @@
 "use strict";
 
+const User = require("../../models/User");
+
 const output = {
   home: (req, res) => {
     res.render("home/index");
@@ -9,29 +11,12 @@ const output = {
   },
 };
 
-const users = {
-  id: ["안유니", "임어진", "황혜정"],
-  psword: ["0124", "0204", "1030"],
-};
-
 const process = {
   login: (req, res) => {
-    const id = req.body.id,
-      psword = req.body.psword;
-
-    if (users.id.includes(id)) {
-      const idx = users.id.indexOf(id);
-      console.log(idx);
-      if (users.psword[idx] === psword) {
-        return res.json({
-          success: true,
-        });
-      }
-    }
-    return res.json({
-      success: false,
-      msg: "로그인에 실패하셨습니다.",
-    });
+    const user = new User(req.body);
+    const response = user.login();
+    // console.log(response);
+    return res.json(response);
   },
 };
 
@@ -39,3 +24,9 @@ module.exports = {
   output,
   process,
 };
+
+//========================================
+
+// const user = new User(req.body); => 클라이언트가 전달한 body
+// const response = user.login(); => 로그인 처리 후 응답받기
+// return res.json(response); => 컨트롤러가 응답 받은 부분 리턴
