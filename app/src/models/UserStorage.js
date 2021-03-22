@@ -42,10 +42,10 @@ class UserStorage {
         ,[user_id] as id
         ,[password] as psword
         ,[comp_skey]
-        ,[regdate]  FROM [TousFluxClient].[dbo].[sys_user_info] WHERE user_id = '${id}'`;
+        ,[regdate]  FROM [TousFluxClient] WHERE user_id = '${id}'`;
       db.query(query, (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data.recordset[0]);
+        else resolve(data.recordset[0]);
       });
     });
   }

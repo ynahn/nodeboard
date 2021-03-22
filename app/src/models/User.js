@@ -21,7 +21,7 @@ class User {
       }
       return { success: false, msg: "존재하지 않는 아이디 입니다." };
     } catch (err) {
-      return { success: false, msg: "아이디를 입력해 주세요" };
+      return { success: false, err };
     }
 
     // const { id, psword } = UserStorage.getUsers("id", "psword");
@@ -34,7 +34,7 @@ class User {
       const response = await UserStorage.save(client);
       return response;
     } catch (err) {
-      return { success: false, msg: err };
+      return { success: false, err };
     }
   }
 }
